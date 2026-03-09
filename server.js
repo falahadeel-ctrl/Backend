@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import express from 'express'
 import readingsRouter from './routes/readings.js'
-import nottesRouter from './routes/notes.js'
+import notesRouter from './routes/notes.js'
 import deviceRouter from './routes/device.js'
 dotenv.config()    //activiate .env file
 
@@ -24,7 +24,7 @@ connectDB()
 
 app.use('/api/readings', readingsRouter)
 app.use('/api/notes', notesRouter)
-app.use('/api/device'. deviceRouter)
+app.use('/api/device', deviceRouter)
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, ()=> console.log(`Server running on port ${PORT}`))
