@@ -6,10 +6,12 @@ const router = express.Router()
 //get all notes
 router.get('/', async (req, res)=>{
     try {
-    const notes = await Note.find()
+    const notes = await Note.find() //find all docs from mongoose model
     res.json(notes)
-    } catch (err){
+    } 
+    catch (err){
         res.status(500).json
     }
+
 
 })
