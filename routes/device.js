@@ -1,10 +1,10 @@
-import express form 'express'
+import express from 'express'
 import Device from '../models/Device.js'
 
 const router = express.Router()
 
 //Get device info
-router.get('/', asnyc (req, res)=>{
+router.get('/', async (req, res)=>{
     try {
         const device = await Device.findOne()
         res.json(device)
@@ -16,7 +16,7 @@ router.get('/', asnyc (req, res)=>{
 //put update device info
 router.put('/', async (req, res)=>{
     try{
-        const device = await Device.findByIdAndUpdate({req.body, {new: true}})
+        const device = await Device.findOneAndUpdate({},req.body, {new: true, upsert: true})
         res.json(device)
     }catch(err){
         res.status(500).json({message: err.message})
