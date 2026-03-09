@@ -22,6 +22,16 @@ const connectDB = async() =>{
 
 connectDB()
 
+//generating random value
+setInterval(async()=>{
+    await Reading.create({
+        voltage: (Math.random()*2+11).toFixed(2),
+        current: (Math.random()* 2+2).toFixed(2),
+        power:(Math.random()*50+30).toFixed(2),
+    })
+    console.log('reading saved')
+},5000)
+
 app.use('/api/readings', readingsRouter)
 app.use('/api/notes', notesRouter)
 app.use('/api/device', deviceRouter)
