@@ -12,6 +12,16 @@ router.get('/', async (req, res)=>{
     catch (err){
         res.status(500).json
     }
-
-
 })
+
+//POST a new note
+router.post('/', async (req, res)=>{
+    try {
+    const note = await note.create(req.body)
+    res.json(note)
+}
+catch(err){
+    res.status(500).json({mesage: err.message})
+}
+})
+//Put edit a note
