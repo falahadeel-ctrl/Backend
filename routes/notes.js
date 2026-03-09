@@ -27,7 +27,7 @@ catch(err){
 //Put edit a note
 router.put('/:id', function(req, res){
     try{
-        const note = await note.put
+        const note = await note.findByIdAndUpdate(req.params.id, req.body, {new: true})
     }
 
 })
