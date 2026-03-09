@@ -28,6 +28,20 @@ catch(err){
 router.put('/:id', function(req, res){
     try{
         const note = await note.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        res.json(note)
+    } catch (err){
+        res.status(500).json({message: err.message})
     }
-
 })
+
+//delete a note
+router.delete('/:id', async (req, res)=>{
+    try{
+        await Note.findByIdAndDelete(req.params.id)
+        res.json({message: 'Note deleted'})
+    } catch(err){
+        res.status(500).json({message: err.message})
+    }
+})
+
+export default router
