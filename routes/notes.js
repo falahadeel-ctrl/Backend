@@ -25,3 +25,9 @@ catch(err){
 }
 })
 //Put edit a note
+router.put('/:id', function(req, res){
+    try{
+        const note = await note.put
+    }
+
+})
