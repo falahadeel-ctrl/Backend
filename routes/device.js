@@ -9,6 +9,18 @@ router.get('/', asnyc (req, res)=>{
         const device = await Device.findOne()
         res.json(device)
     } catch(err){
-        
+        res.status(500).json({message: err.message})
     }
 })
+
+//put update device info
+router.put('/', async (req, res)=>{
+    try{
+        const device = await Device.findByIdAndUpdate({req.body, {new: true}})
+        res.json(device)
+    }catch(err){
+        res.status(500).json({message: err.message})
+    }
+})
+
+export default router
