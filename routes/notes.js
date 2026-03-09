@@ -10,14 +10,14 @@ router.get('/', async (req, res)=>{
     res.json(notes)
     } 
     catch (err){
-        res.status(500).json
+        res.status(500).json({ message: err.message })
     }
 })
 
 //POST a new note
 router.post('/', async (req, res)=>{
     try {
-    const note = await note.create(req.body)
+    const note = await Note.create(req.body)
     res.json(note)
 }
 catch(err){
@@ -25,9 +25,9 @@ catch(err){
 }
 })
 //Put edit a note
-router.put('/:id', function(req, res){
+router.put('/:id', async function(req, res){
     try{
-        const note = await note.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        const note = await Note.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.json(note)
     } catch (err){
         res.status(500).json({message: err.message})
