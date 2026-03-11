@@ -5,10 +5,9 @@ import mongoose from "mongoose";
 // delete(deletes a specific reading by its id)
 
 const readingSchema = new mongoose.Schema({
-    voltage: Number,
-    current: Number,
-    power: Number,
-    createdAT: {type: Date, default: Date.now}
-})
+  voltage: Number,
+  current: Number,
+  power: Number,
+}, { timestamps: true })
 
 export default mongoose.model('Reading', readingSchema)

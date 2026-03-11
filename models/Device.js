@@ -5,8 +5,8 @@ import mongoose from "mongoose";
 //PUT — updates the device info. The upsert:true means if no device exists yet, create one automatically
 
 const deviceSchema = new mongoose.Schema({
-    name: String,
-    location: String,
+    GridNumber: String,
+    status: String,
     description: String
 })
 

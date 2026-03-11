@@ -5,6 +5,7 @@ import express from 'express'
 import readingsRouter from './routes/readings.js'
 import notesRouter from './routes/notes.js'
 import deviceRouter from './routes/device.js'
+import Reading from './models/Reading.js'
 dotenv.config()    //activiate .env file
 
 const app = express()
@@ -15,15 +16,8 @@ const connectDB = async() =>{
     try {
         await mongoose.connect(process.env.MONGO_URL)   //connects to mongoDB
         console.log('MongoDB connected')
-    } catch (err) {
-        console.log('Error:',err.message)
-    }
-}
 
-connectDB()
-
-//generating random value
-setInterval(async()=>{
+        setInterval(async()=>{
     await Reading.create({
         voltage: (Math.random()*2+11).toFixed(2),
         current: (Math.random()* 2+2).toFixed(2),
@@ -31,6 +25,16 @@ setInterval(async()=>{
     })
     console.log('reading saved')
 },5000)
+
+    } catch (err) {
+        console.log('Error:',err.message)
+    }
+    //generating random value
+
+}
+
+connectDB()
+
 
 app.use('/api/readings', readingsRouter)
 app.use('/api/notes', notesRouter)
